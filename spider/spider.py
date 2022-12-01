@@ -63,4 +63,4 @@ if __name__ == '__main__':
     #     writefile.write(str(j) + '\t' + titles[j] + '\t' + str(urls[j]) + '\n')
 
     sleep(2)
-    driver.close()
+    driver.quit()
