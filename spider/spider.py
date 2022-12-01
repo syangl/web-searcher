@@ -3,6 +3,7 @@ from selenium import webdriver
 from time import sleep
 import re
 import requests
+import random
 
 if __name__ == '__main__':
     driver = webdriver.Edge()
@@ -29,17 +30,18 @@ if __name__ == '__main__':
         for i in range(len(webdata)):
             old_urls.extend(re.findall(reg, webdata[i]))
         driver.find_element_by_link_text("下一页").click()
-        sleep(2)
+        sleep(random.randint(2,3))
 
     #删除 404 url
     for i in range(len(old_urls)):
+        # sleep(random.randint(2, 3))
         juge = requests.get(old_urls[i])
         if str(juge) != '<Response [404]>':
             new_urls.append(old_urls[i])
 
     # 爬取数据
     for count in range(len(new_urls)):
-        sleep(2)
+        sleep(random.randint(2,3))
         driver.get(new_urls[count])
         # 获取标题 文档名
         story_name = \
