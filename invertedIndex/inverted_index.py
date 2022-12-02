@@ -117,7 +117,7 @@ class Index:
                 doc.addId(id)
                 doc.addTitle(title)
                 doc.addUrl(url[0:-1])
-                others_line = doc_file.read()#from line 2?
+                others_line = doc_file.read()
                 others_line = others_line.replace("\n", " ")
                 others_line = others_line.replace("。", " ")
                 others_line = others_line.replace("，", " ")
@@ -135,8 +135,8 @@ class Index:
         # inverted index
         for doc in self.doc_list:
             id = doc.getId()
-            # 倒排索引
-            this_term_list = self.depart_words(doc)#分词
+            #分词
+            this_term_list = self.depart_words(doc)
             #本轮词项集合加入索引词项词典（去重）
             self.term_list.extend(this_term_list)
             self.term_list = list(set(self.term_list))
@@ -163,9 +163,7 @@ class Index:
         # with open("idf_dir/idf.txt", 'w', encoding='utf-8') as idf_file:
         #     temp_list = list(self.idf)
         #     idf_file.write(encode(temp_list))
-
-        print("inverted terms:%d" % len(self.inverted))
-        print("index done")
+        print("inverted index have done")
 
 
 
