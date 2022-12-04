@@ -4,46 +4,9 @@ import os
 import re
 import jieba
 import math
-
-# def encode(postings_list):
-#     """Encodes postings_list into a stream of bytes
-#
-#     Parameters
-#     ----------
-#     postings_list: List[int]
-#         List of docIDs (postings)
-#
-#     Returns
-#     -------
-#     bytes
-#         bytearray representing integers in the postings_list
-#     """
-#     return array.array('L', postings_list).tobytes()
-#
-#
-#
-# def decode(encoded_postings_list):
-#     """Decodes postings_list from a stream of bytes
-#
-#     Parameters
-#     ----------
-#     encoded_postings_list: bytes
-#         bytearray representing encoded postings list as output by encode
-#         function
-#
-#     Returns
-#     -------
-#     List[int]
-#         Decoded list of docIDs from encoded_postings_list
-#     """
-#
-#     decoded_postings_list = array.array('L')
-#     decoded_postings_list.frombytes(encoded_postings_list)
-#     return decoded_postings_list.tolist()
-
 class MyDoc:
     def __init__(self):
-        self.id = ""
+        self.id = 0
         self.title = ""
         self.url = ""
         self.content = ""
@@ -85,7 +48,7 @@ class Index:
 
     # 创建停用词列表
     def stop_words_list(self):
-        stop_words = [line.strip() for line in open("stop_words.txt", encoding='UTF-8').readlines()]
+        stop_words = [line.strip() for line in open("../invertedIndex/stop_words.txt", encoding='UTF-8').readlines()]
         return stop_words
 
     # 对句子进行中文分词
@@ -113,8 +76,8 @@ class Index:
             with open(doc_path, 'r', encoding='utf-8') as doc_file:
                 doc = MyDoc()
                 first_line = doc_file.readline()
-                id, title, url = first_line.split('\t')
-                doc.addId(id)
+                sid, title, url = first_line.split('\t')
+                doc.addId(int(sid))
                 doc.addTitle(title)
                 doc.addUrl(url[0:-1])
                 others_line = doc_file.read()
@@ -128,6 +91,7 @@ class Index:
                 others_line = others_line.replace("?", " ")
                 doc.addContent(others_line)
                 self.doc_list.append(doc)
+        self.doc_list.sort(key=lambda x:x.id)
         self.inverted_index()
 
     def inverted_index(self):
@@ -149,20 +113,11 @@ class Index:
                         self.inverted[t][id] += 1
                 else:
                     self.inverted[t] = {id: 1}
-            print("building doc id=%s" % id)
+            print("building doc id=%d" % id)
         # idf
         for t in self.inverted:
             self.idf[t] = math.log10(doc_list_len / len(self.inverted[t]))
-        # # write to disk
-        # with open("index_dir/inverted_index.txt", 'w', encoding='utf-8') as index_file:
-        #     temp_list = list(self.inverted)
-        #     index_file.write(encode(temp_list))
-        # with open("index_dir/term_list.txt", 'w', encoding='utf-8') as term_list_file:
-        #     temp_list = list(self.term_list)
-        #     term_list_file.write(encode(temp_list))
-        # with open("idf_dir/idf.txt", 'w', encoding='utf-8') as idf_file:
-        #     temp_list = list(self.idf)
-        #     idf_file.write(encode(temp_list))
+
         print("inverted index have done")
 
 
