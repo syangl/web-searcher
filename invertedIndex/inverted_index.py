@@ -4,6 +4,10 @@ import os
 import re
 import jieba
 import math
+
+from other_tools.process_bar import process_bar
+
+
 class MyDoc:
     def __init__(self):
         self.id = 0
@@ -113,17 +117,19 @@ class Index:
                         self.inverted[t][id] += 1
                 else:
                     self.inverted[t] = {id: 1}
-            print("building doc id=%d" % id)
+            process_bar(id+1, doc_list_len)
         # idf
         for t in self.inverted:
             self.idf[t] = math.log10(doc_list_len / len(self.inverted[t]))
 
-        print("inverted index have done")
 
 
 
 
-if __name__ == '__main__':
-    # build index
-    my_index = Index()
-    my_index.docs_read_and_build_index("../dataset/")
+# if __name__ == '__main__':
+#     # build index
+#     print("building inverted index")
+#     my_index = Index()
+#     my_index.docs_read_and_build_index("../dataset/")
+#     print("\nbuilding inverted index done")
+#

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="155b313c-c4ec-401a-95be-81d6bb2a4bb8" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="2IIDnvdvqG0aa6VhfhYBpF7cUJ8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/dataset" />
+    <property name="settings.editor.selected.configurable" value="vcs.Subversion" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Studyandwork\pycharm\PycharmProjects\Infortion\WebSearch\dataset" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Studyandwork\pycharm\PycharmProjects\Infortion\WebSearch\invertedIndex" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="inverted_index" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WebSearch" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/invertedIndex" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/invertedIndex/inverted_index.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WebSearch" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tempTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tempTest/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="page_rank" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WebSearch" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PageRank" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PageRank/page_rank.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="process_bar" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WebSearch" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/other_tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/other_tools/process_bar.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="query" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WebSearch" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/query" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/query/query.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.query" />
+        <item itemvalue="Python.inverted_index" />
+        <item itemvalue="Python.page_rank" />
+        <item itemvalue="Python.process_bar" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\lsy\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="155b313c-c4ec-401a-95be-81d6bb2a4bb8" name="Default Changelist" comment="" />
+      <created>1669860373454</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1669860373454</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="313" y="115" key="#Inspections" timestamp="1669866585912">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="313" y="115" key="#Inspections/0.0.1440.912@0.0.1440.912" timestamp="1669866585912" />
+    <state x="450" y="246" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1669941970014">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="450" y="246" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.912@0.0.1440.912" timestamp="1669941970014" />
+    <state x="472" y="366" key="#com.jetbrains.python.refactoring.move.PyMakeFunctionTopLevelDialog" timestamp="1669984910575">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="472" y="366" key="#com.jetbrains.python.refactoring.move.PyMakeFunctionTopLevelDialog/0.0.1440.912@0.0.1440.912" timestamp="1669984910575" />
+    <state x="544" y="349" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog" timestamp="1669880860207">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="544" y="349" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog/0.0.1440.912@0.0.1440.912" timestamp="1669880860207" />
+    <state width="1438" height="374" key="DebuggerActiveHint" timestamp="1674987222674">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state width="1438" height="374" key="DebuggerActiveHint/0.0.1440.912@0.0.1440.912" timestamp="1674987222674" />
+    <state x="465" y="256" key="FileChooserDialogImpl" timestamp="1669944094464">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="465" y="256" key="FileChooserDialogImpl/0.0.1440.912@0.0.1440.912" timestamp="1669944094464" />
+    <state width="1419" height="231" key="GridCell.Tab.-1.bottom" timestamp="1670290960022">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state width="1419" height="231" key="GridCell.Tab.-1.bottom/0.0.1440.912@0.0.1440.912" timestamp="1670290960022" />
+    <state width="1419" height="231" key="GridCell.Tab.-1.center" timestamp="1670290960022">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state width="1419" height="231" key="GridCell.Tab.-1.center/0.0.1440.912@0.0.1440.912" timestamp="1670290960022" />
+    <state width="1419" height="231" key="GridCell.Tab.-1.left" timestamp="1670290960022">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state width="1419" height="231" key="GridCell.Tab.-1.left/0.0.1440.912@0.0.1440.912" timestamp="1670290960022" />
+    <state width="1419" height="231" key="GridCell.Tab.-1.right" timestamp="1670290960022">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state width="1419" height="231" key="GridCell.Tab.-1.right/0.0.1440.912@0.0.1440.912" timestamp="1670290960022" />
+    <state width="1419" height="143" key="GridCell.Tab.0.bottom" timestamp="1674988290578">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state width="1419" height="143" key="GridCell.Tab.0.bottom/0.0.1440.912@0.0.1440.912" timestamp="1674988290578" />
+    <state width="1419" height="143" key="GridCell.Tab.0.center" timestamp="1674988290578">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state width="1419" height="143" key="GridCell.Tab.0.center/0.0.1440.912@0.0.1440.912" timestamp="1674988290578" />
+    <state width="1419" height="143" key="GridCell.Tab.0.left" timestamp="1674988290578">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state width="1419" height="143" key="GridCell.Tab.0.left/0.0.1440.912@0.0.1440.912" timestamp="1674988290578" />
+    <state width="1419" height="143" key="GridCell.Tab.0.right" timestamp="1674988290578">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state width="1419" height="143" key="GridCell.Tab.0.right/0.0.1440.912@0.0.1440.912" timestamp="1674988290578" />
+    <state x="1" y="430" width="1419" height="143" key="GridCell.Tab.1.bottom" timestamp="1674988290578">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="1" y="430" width="1419" height="143" key="GridCell.Tab.1.bottom/0.0.1440.912@0.0.1440.912" timestamp="1674988290578" />
+    <state x="1" y="430" width="1419" height="143" key="GridCell.Tab.1.center" timestamp="1674988290578">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="1" y="430" width="1419" height="143" key="GridCell.Tab.1.center/0.0.1440.912@0.0.1440.912" timestamp="1674988290578" />
+    <state x="1" y="430" width="1419" height="143" key="GridCell.Tab.1.left" timestamp="1674988290578">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="1" y="430" width="1419" height="143" key="GridCell.Tab.1.left/0.0.1440.912@0.0.1440.912" timestamp="1674988290578" />
+    <state x="1" y="430" width="1419" height="143" key="GridCell.Tab.1.right" timestamp="1674988290578">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="1" y="430" width="1419" height="143" key="GridCell.Tab.1.right/0.0.1440.912@0.0.1440.912" timestamp="1674988290578" />
+    <state x="1" y="430" width="1390" height="404" key="GridCell.Tab.2.bottom" timestamp="1670292554424">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="1" y="430" width="1390" height="404" key="GridCell.Tab.2.bottom/0.0.1440.912@0.0.1440.912" timestamp="1670292554424" />
+    <state x="1" y="430" width="1390" height="404" key="GridCell.Tab.2.center" timestamp="1670292554424">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="1" y="430" width="1390" height="404" key="GridCell.Tab.2.center/0.0.1440.912@0.0.1440.912" timestamp="1670292554424" />
+    <state x="1" y="430" width="1390" height="404" key="GridCell.Tab.2.left" timestamp="1670292554424">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="1" y="430" width="1390" height="404" key="GridCell.Tab.2.left/0.0.1440.912@0.0.1440.912" timestamp="1670292554424" />
+    <state x="1" y="430" width="1390" height="404" key="GridCell.Tab.2.right" timestamp="1670292554424">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="1" y="430" width="1390" height="404" key="GridCell.Tab.2.right/0.0.1440.912@0.0.1440.912" timestamp="1670292554424" />
+    <state x="104" y="197" key="SettingsEditor" timestamp="1674986598339">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="104" y="197" key="SettingsEditor/0.0.1440.912@0.0.1440.912" timestamp="1674986598339" />
+    <state width="727" height="463" key="XDebugger.FullValuePopup" timestamp="1670123412140">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state width="727" height="463" key="XDebugger.FullValuePopup/0.0.1440.912@0.0.1440.912" timestamp="1670123412140" />
+    <state x="383" y="281" key="com.intellij.ide.util.TipDialog" timestamp="1674988380238">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="383" y="281" key="com.intellij.ide.util.TipDialog/0.0.1440.912@0.0.1440.912" timestamp="1674988380238" />
+    <state x="283" y="111" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1669881050634">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="283" y="111" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1440.912@0.0.1440.912" timestamp="1669881050634" />
+    <state x="1" y="430" width="1404" height="469" key="dock-window-1" timestamp="1674981533502">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="1" y="430" width="1404" height="469" key="dock-window-1/0.0.1440.912@0.0.1440.912" timestamp="1674981533502" />
+    <state x="1" y="430" width="1404" height="469" key="dock-window-2" timestamp="1670292225297">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="1" y="430" width="1404" height="469" key="dock-window-2/0.0.1440.912@0.0.1440.912" timestamp="1670292225297" />
+    <state x="1" y="430" width="1404" height="469" key="dock-window-3" timestamp="1670292436662">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="1" y="430" width="1404" height="469" key="dock-window-3/0.0.1440.912@0.0.1440.912" timestamp="1670292436662" />
+    <state x="1" y="430" width="1404" height="469" key="dock-window-4" timestamp="1670292436662">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="1" y="430" width="1404" height="469" key="dock-window-4/0.0.1440.912@0.0.1440.912" timestamp="1670292436662" />
+    <state x="1" y="430" width="1404" height="469" key="dock-window-5" timestamp="1670292436662">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="1" y="430" width="1404" height="469" key="dock-window-5/0.0.1440.912@0.0.1440.912" timestamp="1670292436662" />
+    <state x="365" y="32" width="711" height="849" key="find.popup" timestamp="1669888813966">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="365" y="32" width="711" height="849" key="find.popup/0.0.1440.912@0.0.1440.912" timestamp="1669888813966" />
+    <state x="383" y="193" width="672" height="678" key="search.everywhere.popup" timestamp="1674982507442">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="383" y="193" width="672" height="678" key="search.everywhere.popup/0.0.1440.912@0.0.1440.912" timestamp="1674982507442" />
+    <state x="443" y="361" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1669867897660">
+      <screen x="0" y="0" width="1440" height="912" />
+    </state>
+    <state x="443" y="361" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1440.912@0.0.1440.912" timestamp="1669867897660" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
