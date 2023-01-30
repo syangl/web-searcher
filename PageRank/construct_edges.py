@@ -39,8 +39,8 @@ class ConstructEdges:
         :param doc2:
         :return: doc1到doc2的外链值
         '''
-        doc1_term_list = Index().depart_words(doc1)
-        doc2_term_list = Index().depart_words(doc2)
+        doc1_term_list = Index().extern_depart_words(doc1)
+        doc2_term_list = Index().extern_depart_words(doc2)
         intersect_list = self.list_intersect(doc1_term_list, doc2_term_list)
         PR_1to2 = 0
         for term in intersect_list:
@@ -61,15 +61,6 @@ class ConstructEdges:
                 for_cnt += 1
                 process_bar(for_cnt, total)
 
-# if __name__ == '__main__':
-# #     # build index
-# #     my_index = Index()
-# #     my_index.docs_read_and_build_index("../dataset/")
-# #     # construct edges
-# #     construt_edge = ConstructEdges(my_index.doc_list)
-# #     construt_edge.construct_matrix_and_edges()
-# #     print(construt_edge.PR_matrix)
-# #     print(construt_edge.edges)
 
 
 

@@ -2,50 +2,89 @@ import jieba
 
 from PageRank.construct_edges import ConstructEdges
 from PageRank.page_rank import PageRank
-from invertedIndex.inverted_index import Index
+from invertedIndex.inverted_index import Index, MyDoc
 
 
 class Querier:
     def __init__(self, idx, pg):
         self.index = idx
         self.page_rank = pg
-    def query(self, q):
+    def search(self, query):
+        '''
+        站内查询
+        :param query: 查询词
+        :return: 包含所有查询词的文档
+        '''
         term_list = []
-        q = q.split(" ")
-        for it in q:
+        query = query.split(" ")
+        for it in query:
             term_list.append(it)
 
         num_pg = {}
         for term in term_list:
-            # TODO：多个查询词怎么判断谁重要？ 或许可以配合高级检索功能
             if term in self.index.inverted:
                 doc_list = self.index.inverted[term].items()
                 for it in doc_list:
                     num_pg[str(it[0])] = self.page_rank[str(it[0])]
 
+
         sorted_docs_list = sorted(num_pg.items(), key = lambda x:x[1], reverse = True)
         return sorted_docs_list
 
-# if __name__ == '__main__':
-#     # build index
-#     print("building inverted index...")
-#     my_index = Index()
-#     my_index.docs_read_and_build_index("../dataset/")
-#     print("\nbuilding inverted index done")
-#     # construct edges
-#     print("constructing matrix and edges...")
-#     construt_edge = ConstructEdges(my_index.doc_list)
-#     construt_edge.construct_matrix_and_edges()
-#     print("\nconstructing matrix and edges done")
-#     # pagerank
-#     print("computing PageRank...")
-#     my_page_rank = PageRank(construt_edge.edges)
-#     my_page_rank.compute_pagerank()
-#     print("\nPageRank is:\n", my_page_rank.pagerank_dict)
-#     # query
-#     q = input("input your qeury terms:\n")
-#     my_query = Querier(my_index, my_page_rank.pagerank_dict)
-#     res = my_query.query(q)
-#     print("query result:\n", res)
-#     pass
+    def phrase_search(self, query):
+        '''
+        短语查询
+        :param query: 查询词
+        :return:包含查询短语的结果
+        '''
+        qeury_list = []
+        query_doc = MyDoc()
+        query_doc.addContent(query)
+        qeury_list = Index().extern_depart_words(query_doc)
+        if " " in qeury_list:
+            qeury_list.remove(" ")
+
+
+        # query = query.split(" ")
+        # for it in query:
+        #     qeury_list.append(it)
+
+        result = []
+        sorted_result = []
+        if len(qeury_list) > 1:
+            temp_dict = {}
+            for i in range(0, len(qeury_list)):
+                temp_docs = self.index.inverted[qeury_list[i]].keys()
+                temp_dict.setdefault(i, temp_docs)
+            temp_dict_new = temp_dict[0]
+            for i in range(1, len(qeury_list)):
+                temp_dict_new = [val for val in temp_dict_new if val in temp_dict[i]]
+            for key in temp_dict_new:
+                first_poslist = self.index.inverted[qeury_list[0]][key]
+                judge_list = []
+                for pos in first_poslist:
+                    judge_per_list = []
+                    for j in range(1, len(qeury_list)):
+                        if pos + j not in self.index.inverted[qeury_list[j]][key]:
+                            judge_per_list.append(0)
+                        else:
+                            judge_per_list.append(1)
+
+                    if 0 in judge_per_list:
+                        judge_list.append(0)
+                    else:
+                        judge_list.append(1)
+                if 1 in judge_list:
+                    result.append(key)
+            # pagerank
+            num_pg = {}
+            for id in result:
+                num_pg[str(id)] = self.page_rank[str(id)]
+
+            sorted_result = sorted(num_pg.items(), key=lambda x: x[1], reverse=True)
+        else:
+            sorted_result = self.search(query)
+        
+        return sorted_result
+
 

@@ -34,12 +34,16 @@ class MyDoc:
 
 
 
+
 class Index:
     def __init__(self):
         self.doc_list = []
         self.term_list = []
         self.inverted = {}
-        self.idf = {}
+        # 每篇文档中的pos_term
+        self.pos_term = []
+        # 每篇文档中词项和其位置列表映射
+        self.term_poslist = {}
 
     def getDocList(self):
         return self.doc_list
@@ -47,8 +51,6 @@ class Index:
         return self.term_list
     def getInverted(self):
         return self.inverted
-    def getIdf(self):
-        return self.idf
 
     # 创建停用词列表
     def stop_words_list(self):
@@ -56,7 +58,23 @@ class Index:
         return stop_words
 
     # 对句子进行中文分词
-    def depart_words(self,doc):
+    def depart_words(self, doc):
+        doc_depart = jieba.cut_for_search(doc.getContent())
+        stop_words = self.stop_words_list()
+        # 输出结果为outstr
+        out_list = []
+        pos = 1
+        # 去停用词
+        for word in doc_depart:
+            if word not in stop_words:
+                if word != '\t':
+                    out_list.append(word)
+                    self.pos_term.append((pos, word)) # 记录位置
+                    pos = pos + 1
+        return out_list
+
+    # 外部使用
+    def extern_depart_words(self, doc):
         doc_depart = jieba.cut_for_search(doc.getContent())
         stop_words = self.stop_words_list()
         # 输出结果为outstr
@@ -67,6 +85,12 @@ class Index:
                 if word != '\t':
                     out_list.append(word)
         return out_list
+
+    # 建立词项和其位置列表映射
+    def build_term_poslist(self):
+        for pos, term in self.pos_term:
+            postions = self.term_poslist.setdefault(term, [])
+            postions.append(pos)
 
     def docs_read_and_build_index(self, filedir_path):
         doc_name_list = os.listdir(filedir_path)
@@ -103,33 +127,24 @@ class Index:
         # inverted index
         for doc in self.doc_list:
             id = doc.getId()
-            #分词
+            # 分词
             this_term_list = self.depart_words(doc)
+            self.build_term_poslist()
             #本轮词项集合加入索引词项词典（去重）
             self.term_list.extend(this_term_list)
             self.term_list = list(set(self.term_list))
-            #用本轮词项集合扩充索引（不去重要计数tf）
+            # 用本轮词项集合扩充索引（不去重要记录位置）
             for t in this_term_list:
                 if t in self.inverted:
                     if id not in self.inverted[t]:
-                        self.inverted[t][id] = 1
+                        self.inverted[t][id] = self.term_poslist[t]
                     else:
-                        self.inverted[t][id] += 1
+                        pass
                 else:
-                    self.inverted[t] = {id: 1}
-            process_bar(id+1, doc_list_len)
-        # idf
-        for t in self.inverted:
-            self.idf[t] = math.log10(doc_list_len / len(self.inverted[t]))
+                    self.inverted[t] = {id: self.term_poslist[t]}
+
+            process_bar(id + 1, doc_list_len)
+            self.term_poslist = {}
+            self.pos_term = []
 
 
-
-
-
-# if __name__ == '__main__':
-#     # build index
-#     print("building inverted index")
-#     my_index = Index()
-#     my_index.docs_read_and_build_index("../dataset/")
-#     print("\nbuilding inverted index done")
-#

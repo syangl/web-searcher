@@ -24,21 +24,3 @@ class PageRank:
         # plt.show()
         self.pagerank_dict = nx.pagerank(G, alpha=0.85)
 
-# if __name__ == '__main__':
-#     # build index
-#     print("building inverted index...")
-#     my_index = Index()
-#     my_index.docs_read_and_build_index("../dataset/")
-#     print("\nbuilding inverted index done")
-#     # construct edges
-#     print("constructing matrix and edges...")
-#     construt_edge = ConstructEdges(my_index.doc_list)
-#     construt_edge.construct_matrix_and_edges()
-#     print("\nconstructing matrix and edges done")
-#     # pagerank
-#     print("computing PageRank...")
-#     my_page_rank = PageRank(construt_edge.edges)
-#     my_page_rank.compute_pagerank()
-#     print("\nPageRank is:\n", my_page_rank.pagerank_dict)
-#     pass
-
