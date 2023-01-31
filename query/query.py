@@ -9,6 +9,13 @@ class Querier:
     def __init__(self, idx, pg):
         self.index = idx
         self.page_rank = pg
+
+    def set_index(self, idx):
+        self.index = idx
+
+    def set_page_rank(self, pg):
+        self.page_rank = pg
+
     def search(self, query):
         '''
         站内查询

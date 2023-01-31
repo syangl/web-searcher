@@ -54,7 +54,7 @@ class Index:
 
     # 创建停用词列表
     def stop_words_list(self):
-        stop_words = [line.strip() for line in open("../invertedIndex/stop_words.txt", encoding='UTF-8').readlines()]
+        stop_words = [line.strip() for line in open("invertedIndex/stop_words.txt", encoding='UTF-8').readlines()]
         return stop_words
 
     # 对句子进行中文分词
