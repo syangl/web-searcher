@@ -44,11 +44,6 @@ class Querier:
         if " " in qeury_list:
             qeury_list.remove(" ")
 
-
-        # query = query.split(" ")
-        # for it in query:
-        #     qeury_list.append(it)
-
         result = []
         sorted_result = []
         if len(qeury_list) > 1:
@@ -88,3 +83,59 @@ class Querier:
         return sorted_result
 
 
+    def wildcard_search(self, query):
+        '''
+        通配查询
+        :param query: 查询词
+        :return: 通配查询结果
+        '''
+        result = []
+        sorted_result = []
+        if '*' in query and ' ' not in query:
+            length = len(query) - 1
+            pos = query.index('*')
+            if pos == 0:
+                # head
+                query_term = query[1:]
+                for term in self.index.inverted.keys():
+                    idx_term = term[-length:]
+                    if query_term == idx_term:
+                        result.extend( self.index.inverted[term].keys())
+                # pagerank
+                num_pg = {}
+                for id in result:
+                    num_pg[str(id)] = self.page_rank[str(id)]
+                sorted_result = sorted(num_pg.items(), key=lambda x: x[1], reverse=True)
+            elif pos == length:
+                # tail
+                query_term = query[:-1]
+                for term in self.index.inverted.keys():
+                    idx_term = term[:length]
+                    if query_term == idx_term:
+                        result.extend(self.index.inverted[term].keys())
+                # pagerank
+                num_pg = {}
+                for id in result:
+                    num_pg[str(id)] = self.page_rank[str(id)]
+                sorted_result = sorted(num_pg.items(), key=lambda x: x[1], reverse=True)
+            else:
+                # middle
+                query_split = query.split('*')
+                query_term1 = query_split[0]
+                query_term2 = query_split[1]
+                len1 = len(query_term1)
+                len2 = len(query_term2)
+                for term in self.index.inverted.keys():
+                    idx_term1 = term[:len1]
+                    idx_term2 = term[-len2:]
+                    if query_term1 == idx_term1 and query_term2 == idx_term2 and len(term) >= (len1 + len2):
+                        result.extend(self.index.inverted[term].keys())
+                # pagerank
+                num_pg = {}
+                for id in result:
+                    num_pg[str(id)] = self.page_rank[str(id)]
+                sorted_result = sorted(num_pg.items(), key=lambda x: x[1], reverse=True)
+        else:
+            sorted_result = self.search(query)
+
+        return sorted_result

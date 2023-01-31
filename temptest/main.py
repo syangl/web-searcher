@@ -19,14 +19,20 @@ if __name__ == '__main__':
     my_page_rank = PageRank(construt_edge.edges)
     my_page_rank.compute_pagerank()
     print("\nPageRank is:\n", my_page_rank.pagerank_dict)
-    # search
-    q = input("input your qeury terms:\n")
+    # # search
+    # q = input("input your search terms:\n")
+    # my_query = Querier(my_index, my_page_rank.pagerank_dict)
+    # res = my_query.search(q)
+    # print("search result:\n", res)
+    # # phrase search
+    # query = input("input your phrase search terms:\n")
+    # my_query = Querier(my_index, my_page_rank.pagerank_dict)
+    # res = my_query.phrase_search(query)
+    # print("phrase search result:\n", res)
+    # wildcard search
+    query = input("input your wildcard search terms:\n")
     my_query = Querier(my_index, my_page_rank.pagerank_dict)
-    res = my_query.search(q)
-    print("search result:\n", res)
-    # phrase search
-    query = input("input your qeury terms:\n")
-    my_query = Querier(my_index, my_page_rank.pagerank_dict)
-    res = my_query.phrase_search(query)
-    print("phrase search result:\n", res)
+    res = my_query.wildcard_search(query)
+    print("wildcard search result:\n", res)
+
     pass
