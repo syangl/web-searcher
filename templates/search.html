@@ -13,10 +13,10 @@
     <br>
     <form class="form-inline" method="post" action="/">
         <div class="form-group">
-            <input type="text" style="height: 40px; width: 360px;" class="form-control" ng-model="query"
+            <input type="text" readonly="readonly" style="height: 40px; width: 360px;" class="form-control" ng-model="query"
                    value="{{ value }}" name="query" id="query"/>
         </div>
-        <input class="btn btn-small btn-success" role="button" type="submit" value="搜索" id="btn">
+<!--        <input class="btn btn-small btn-success" role="button" type="submit" value="搜索" id="btn">-->
     </form>
     <br>
     <br>共有{{ length }}条结果
