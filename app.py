@@ -6,6 +6,7 @@ from flask import Flask, request, render_template, redirect, url_for
 from PageRank.construct_edges import ConstructEdges
 from PageRank.page_rank import PageRank
 from invertedIndex.inverted_index import Index
+from other_tools.delete_files import del_files
 from query.query import Querier
 
 app = Flask(__name__)
@@ -32,6 +33,10 @@ def index():
 
 @app.route("/search/<query>&<is_login>&<username>", methods=['POST', 'GET'])
 def search(query, is_login, username):
+    if request.method == 'POST' and request.form.get('cache'):
+        cache_value = request.form['cache']
+        id_str = cache_value[2:]
+        return redirect(url_for('cache', id_str=id_str))
     sorted_result = my_query.search(query)
     docs_id = []
     docs_list = []
@@ -50,6 +55,10 @@ def search(query, is_login, username):
 
 @app.route("/phrase_search/<query>&<is_login>&<username>", methods=['POST', 'GET'])
 def phrase_search(query, is_login, username):
+    if request.method == 'POST' and request.form.get('cache'):
+        cache_value = request.form['cache']
+        id_str = cache_value[2:]
+        return redirect(url_for('cache', id_str=id_str))
     sorted_result = my_query.phrase_search(query)
     docs_id = []
     docs_list = []
@@ -68,6 +77,10 @@ def phrase_search(query, is_login, username):
 
 @app.route("/wildcard_search/<query>&<is_login>&<username>", methods=['POST', 'GET'])
 def wildcard_search(query, is_login, username):
+    if request.method == 'POST' and request.form.get('cache'):
+        cache_value = request.form['cache']
+        id_str = cache_value[2:]
+        return redirect(url_for('cache', id_str=id_str))
     sorted_result = my_query.wildcard_search(query)
     docs_id = []
     docs_list = []
@@ -83,6 +96,32 @@ def wildcard_search(query, is_login, username):
         writefile.close()
     return render_template('search.html', docs_list=docs_list, value=query, length=len(docs_list))
 
+
+@app.route("/cache/<id_str>", methods=['POST', 'GET'])
+def cache(id_str):
+    # 先清空之前的临时cache文档
+    filename_list = os.listdir("templates")
+    for del_name in filename_list:
+        if del_name.find("tmp") != -1:
+            del_path = os.path.join("templates", del_name)
+            os.remove(del_path)
+    # 提取快照
+    dir = "WebCache"
+    html_load_path = "not_found.html" # 快照找不到时的默认路径
+    path_list = os.listdir(dir)
+    for path in path_list:
+        sub_dir = os.path.join(dir, path)
+        if os.path.isdir(sub_dir):
+            file_list = os.listdir(sub_dir)
+            for file_name in file_list:
+                name = file_name.split('.')
+                name_str = name[0]
+                if name_str == id_str:
+                    cache_origin_path = os.path.join(sub_dir, file_name)
+                    dest_path = os.path.join("templates", "tmp_" + file_name)
+                    os.system('copy ' + cache_origin_path + ' ' + dest_path)
+                    html_load_path = "tmp_" + file_name
+    return render_template(html_load_path)
 
 @app.route("/login/<username>&<password>", methods=['POST', 'GET'])
 def login(username, password):

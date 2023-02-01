@@ -1,6 +1,8 @@
 # encoding=utf-8
+import gzip
 import os
 import urllib.request
+from io import BytesIO
 
 from selenium import webdriver
 from time import sleep
@@ -11,7 +13,7 @@ import random
 from other_tools.delete_files import del_files
 from other_tools.process_bar import process_bar
 
-CACHE_SIZE = 50
+CACHE_SIZE = 5
 cur_cache_size = 0
 
 filedir_path = "../WebCache/"
@@ -85,19 +87,23 @@ if __name__ == '__main__':
         writefile = open("../dataset/" + doc_name, 'w', encoding='UTF-8')
         writefile.write(str(count) + '\t' + titles[count] + '\t' + str(new_urls[count]) + '\n' + contents[count] + '\n')
         # 保存网页快照，替换最早保存的网页
-        html = urllib.request.urlopen(new_urls[count]).read()
+        html_bin = urllib.request.urlopen(new_urls[count]).read()
+        buf = BytesIO(html_bin)
+        f = gzip.GzipFile(fileobj=buf)
+        html_str = f.read().decode('utf-8')
+
         if cur_cache_size < CACHE_SIZE:
             if not os.path.exists(filedir_path + str(cur_cache_size)):
                 os.mkdir(filedir_path + str(cur_cache_size))
-            with open(filedir_path + str(cur_cache_size) + "/" + str(count) + ".html", 'wb') as html_file:
-                html_file.write(html)
+            with open(filedir_path + str(cur_cache_size) + "/" + str(count) + ".html", 'w', encoding='UTF-8') as html_file:
+                html_file.write(html_str)
             cur_cache_size += 1
         else:
             cur_pos = count % CACHE_SIZE
             # 清空旧cache line
             del_files(filedir_path + str(cur_pos))
-            with open(filedir_path + str(cur_pos) + "/" + str(count) + ".html", 'wb') as html_file:
-                html_file.write(html)
+            with open(filedir_path + str(cur_pos) + "/" + str(count) + ".html", 'w', encoding='UTF-8') as html_file:
+                html_file.write(html_str)
 
     cache_list = os.listdir(filedir_path)
     with open(filedir_path + "cache_size.log", 'w', encoding='UTF-8') as log_file:

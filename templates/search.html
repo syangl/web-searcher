@@ -16,7 +16,6 @@
             <input type="text" readonly="readonly" style="height: 40px; width: 360px;" class="form-control" ng-model="query"
                    value="{{ value }}" name="query" id="query"/>
         </div>
-<!--        <input class="btn btn-small btn-success" role="button" type="submit" value="搜索" id="btn">-->
     </form>
     <br>
     <br>共有{{ length }}条结果
@@ -24,7 +23,7 @@
     <div id="box">
         {% for doc in docs_list %}
         <p><a href="{{ doc.getUrl() }}" target="_blank">{{ doc.getTitle()|safe }}</a></p>
-        <p>url：{{ doc.getUrl() }}</p>
+        <form method="post"><p>url：{{ doc.getUrl() }} <input class="btn btn-small btn-success" style="height: 30px; width: 60px;" role="button" type="submit" value="快照{{ doc.getIdStr() }}" name="cache" id="btn"></p></form>
         <br>
         {% endfor %}
     </div>

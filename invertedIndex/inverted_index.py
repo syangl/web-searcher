@@ -31,6 +31,8 @@ class MyDoc:
         return self.url
     def getContent(self):
         return self.content
+    def getIdStr(self):
+        return str(self.id)
 
 
 
