@@ -23,7 +23,7 @@
     <div id="box">
         {% for doc in docs_list %}
         <p><a href="{{ doc.getUrl() }}" target="_blank">{{ doc.getTitle()|safe }}</a></p>
-        <form method="post"><p>url：{{ doc.getUrl() }} <input class="btn btn-small btn-success" style="height: 30px; width: 60px;" role="button" type="submit" value="快照{{ doc.getIdStr() }}" name="cache" id="btn"></p></form>
+        <form method="post"><p>url：{{ doc.getUrl() }} <input class="btn btn-small btn-success" style="height: 30px; width: 60px;" role="button" type="submit" value="快照{{ doc.getIdStr() }}" name="cache" id="btn"/><input class="btn btn-small btn-success" style="height: 30px; width: 60px;" role="button" type="submit" value="like{{ doc.getIdStr() }}" name="like"/></p></form>
         <br>
         {% endfor %}
     </div>

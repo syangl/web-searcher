@@ -29,7 +29,7 @@ class Querier:
 
         num_pg = {}
         for term in term_list:
-            if term in self.index.inverted:
+            if term in self.index.inverted.keys():
                 doc_list = self.index.inverted[term].items()
                 for it in doc_list:
                     num_pg[str(it[0])] = self.page_rank[str(it[0])]
@@ -56,8 +56,9 @@ class Querier:
         if len(qeury_list) > 1:
             temp_dict = {}
             for i in range(0, len(qeury_list)):
-                temp_docs = self.index.inverted[qeury_list[i]].keys()
-                temp_dict.setdefault(i, temp_docs)
+                if qeury_list[i] in self.index.inverted.keys():
+                    temp_docs = self.index.inverted[qeury_list[i]].keys()
+                    temp_dict.setdefault(i, temp_docs)
             temp_dict_new = temp_dict[0]
             for i in range(1, len(qeury_list)):
                 temp_dict_new = [val for val in temp_dict_new if val in temp_dict[i]]

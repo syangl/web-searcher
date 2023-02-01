@@ -16,13 +16,13 @@ app = Flask(__name__)
 def index():
     if request.method == 'POST' and request.form.get('query'):
         query = request.form['query']
-        return redirect(url_for('search', query=query, is_login=False, username=None))
+        return redirect(url_for('search', query=query, is_login=False, username='default'))
     elif request.method == 'POST' and request.form.get('phrase_query'):
         query = request.form['phrase_query']
-        return redirect(url_for('phrase_search', query=query, is_login=False, username=None))
+        return redirect(url_for('phrase_search', query=query, is_login=False, username='default'))
     elif request.method == 'POST' and request.form.get('wildcard_query'):
         query = request.form['wildcard_query']
-        return redirect(url_for('wildcard_search', query=query, is_login=False, username=None))
+        return redirect(url_for('wildcard_search', query=query, is_login=False, username='default'))
     elif request.method == 'POST' and request.form.get('username') and request.form.get('password'):
         username = request.form['username']
         password = request.form['password']
@@ -33,10 +33,18 @@ def index():
 
 @app.route("/search/<query>&<is_login>&<username>", methods=['POST', 'GET'])
 def search(query, is_login, username):
+    # 获取快照
     if request.method == 'POST' and request.form.get('cache'):
         cache_value = request.form['cache']
         id_str = cache_value[2:]
         return redirect(url_for('cache', id_str=id_str))
+    # 点击like
+    if request.method == 'POST' and request.form.get('like') and is_login != 'False':
+        cache_value = request.form['like']
+        id_str = cache_value[4:]
+        return redirect(
+            url_for('like', id_str=id_str, search_mode='search', username=username, query=query, is_login=is_login))
+
     sorted_result = my_query.search(query)
     docs_id = []
     docs_list = []
@@ -44,21 +52,65 @@ def search(query, is_login, username):
         docs_id.append(it[0])
     for i in docs_id:
         docs_list.append(my_index.doc_list[int(i)])
-    if is_login and (username is not None):
+    if is_login != 'False' and username != 'default':
+        log_path = "SearchLog/" + username + ".log"
+        if os.path.exists(log_path):
+            with open(log_path, 'r', encoding='UTF-8') as log_file:
+                lines = log_file.readlines()
+                terms = set()
+                for line in lines:
+                    line = line.replace('\n', ' ')
+                    split_list = line.split(' ')
+                    terms.add(split_list[3])
+                if query in terms:
+                    if os.path.exists("PersonalLog/" + username):
+                        # 重新按照like排序本次搜索结果
+                        filename_list = os.listdir("PersonalLog/" + username)
+                        id_str_list = [] # 用户like的id列表
+                        for filename in filename_list:
+                            tmp_split = filename.split('.')
+                            id_str_list.append(tmp_split[0])
+                        # 把sorted_result变成字典方便操作
+                        result_dict = {}
+                        for it in sorted_result:
+                            result_dict[it[0]] = it[1]
+                        for id in docs_id: #本次搜索结果返回的每一个id
+                            if id in id_str_list: # 在like的id中存在，pg+点击like的次数，提高权值
+                                cnt = 1
+                                with open("PersonalLog/" + username + "/" + id + ".log", 'r', encoding='UTF-8') as file:
+                                    cnt = int(file.readline())
+                                result_dict[id] = result_dict[id] + cnt
+                        sorted_result = sorted(result_dict.items(), key=lambda x: x[1], reverse=True)
+                        new_docs_id = []
+                        docs_list = []
+                        for it in sorted_result:
+                            new_docs_id.append(it[0])
+                        for i in new_docs_id:
+                            docs_list.append(my_index.doc_list[int(i)])
+
         writefile = open("SearchLog/" + username + ".log", 'a', encoding='UTF-8')
         now = datetime.now()
-        time = now.strftime("%Y-%m-%d %H:%M:%S")
+        time = now.strftime("%Y-%m-%d|%H:%M:%S")
         writefile.write("[" + time + "] " + "search_mode:search " + username + " " + query + "\n")
         writefile.close()
+
     return render_template('search.html', docs_list=docs_list, value=query, length=len(docs_list))
 
 
 @app.route("/phrase_search/<query>&<is_login>&<username>", methods=['POST', 'GET'])
 def phrase_search(query, is_login, username):
+    # 获取快照
     if request.method == 'POST' and request.form.get('cache'):
         cache_value = request.form['cache']
         id_str = cache_value[2:]
         return redirect(url_for('cache', id_str=id_str))
+    # 点击like
+    if request.method == 'POST' and request.form.get('like') and is_login != 'False':
+        cache_value = request.form['like']
+        id_str = cache_value[4:]
+        return redirect(
+            url_for('like', id_str=id_str, search_mode='phrase_search', username=username, query=query, is_login=is_login))
+
     sorted_result = my_query.phrase_search(query)
     docs_id = []
     docs_list = []
@@ -66,10 +118,45 @@ def phrase_search(query, is_login, username):
         docs_id.append(it[0])
     for i in docs_id:
         docs_list.append(my_index.doc_list[int(i)])
-    if is_login and (username is not None):
+    if is_login != 'False' and username != 'default':
+        log_path = "SearchLog/" + username + ".log"
+        if os.path.exists(log_path):
+            with open(log_path, 'r', encoding='UTF-8') as log_file:
+                lines = log_file.readlines()
+                terms = set()
+                for line in lines:
+                    line = line.replace('\n', ' ')
+                    split_list = line.split(' ')
+                    terms.add(split_list[3])
+                if query in terms:
+                    if os.path.exists("PersonalLog/" + username):
+                        # 重新按照like排序本次搜索结果
+                        filename_list = os.listdir("PersonalLog/" + username)
+                        id_str_list = [] # 用户like的id列表
+                        for filename in filename_list:
+                            tmp_split = filename.split('.')
+                            id_str_list.append(tmp_split[0])
+                        # 把sorted_result变成字典方便操作
+                        result_dict = {}
+                        for it in sorted_result:
+                            result_dict[it[0]] = it[1]
+                        for id in docs_id: #本次搜索结果返回的每一个id
+                            if id in id_str_list: # 在like的id中存在，pg+点击like的次数，提高权值
+                                cnt = 1
+                                with open("PersonalLog/" + username + "/" + id + ".log", 'r', encoding='UTF-8') as file:
+                                    cnt = int(file.readline())
+                                result_dict[id] = result_dict[id] + cnt
+                        sorted_result = sorted(result_dict.items(), key=lambda x: x[1], reverse=True)
+                        new_docs_id = []
+                        docs_list = []
+                        for it in sorted_result:
+                            new_docs_id.append(it[0])
+                        for i in new_docs_id:
+                            docs_list.append(my_index.doc_list[int(i)])
+
         writefile = open("SearchLog/" + username + ".log", 'a', encoding='UTF-8')
         now = datetime.now()
-        time = now.strftime("%Y-%m-%d %H:%M:%S")
+        time = now.strftime("%Y-%m-%d|%H:%M:%S")
         writefile.write("[" + time + "] " + "search_mode:phrase_search " + username + " " + query + "\n")
         writefile.close()
     return render_template('search.html', docs_list=docs_list, value=query, length=len(docs_list))
@@ -77,10 +164,18 @@ def phrase_search(query, is_login, username):
 
 @app.route("/wildcard_search/<query>&<is_login>&<username>", methods=['POST', 'GET'])
 def wildcard_search(query, is_login, username):
+    # 获取快照
     if request.method == 'POST' and request.form.get('cache'):
         cache_value = request.form['cache']
         id_str = cache_value[2:]
         return redirect(url_for('cache', id_str=id_str))
+    # 点击like
+    if request.method == 'POST' and request.form.get('like') and is_login != 'False':
+        cache_value = request.form['like']
+        id_str = cache_value[4:]
+        return redirect(
+            url_for('like', id_str=id_str, search_mode='wildcard_search', username=username, query=query, is_login=is_login))
+
     sorted_result = my_query.wildcard_search(query)
     docs_id = []
     docs_list = []
@@ -88,10 +183,45 @@ def wildcard_search(query, is_login, username):
         docs_id.append(it[0])
     for i in docs_id:
         docs_list.append(my_index.doc_list[int(i)])
-    if is_login and (username is not None):
+    if is_login != 'False' and username != 'default':
+        log_path = "SearchLog/" + username + ".log"
+        if os.path.exists(log_path):
+            with open(log_path, 'r', encoding='UTF-8') as log_file:
+                lines = log_file.readlines()
+                terms = set()
+                for line in lines:
+                    line = line.replace('\n', ' ')
+                    split_list = line.split(' ')
+                    terms.add(split_list[3])
+                if query in terms:
+                    if os.path.exists("PersonalLog/" + username):
+                        # 重新按照like排序本次搜索结果
+                        filename_list = os.listdir("PersonalLog/" + username)
+                        id_str_list = [] # 用户like的id列表
+                        for filename in filename_list:
+                            tmp_split = filename.split('.')
+                            id_str_list.append(tmp_split[0])
+                        # 把sorted_result变成字典方便操作
+                        result_dict = {}
+                        for it in sorted_result:
+                            result_dict[it[0]] = it[1]
+                        for id in docs_id: #本次搜索结果返回的每一个id
+                            if id in id_str_list: # 在like的id中存在，pg+点击like的次数，提高权值
+                                cnt = 1
+                                with open("PersonalLog/" + username + "/" + id + ".log", 'r', encoding='UTF-8') as file:
+                                    cnt = int(file.readline())
+                                result_dict[id] = result_dict[id] + cnt
+                        sorted_result = sorted(result_dict.items(), key=lambda x: x[1], reverse=True)
+                        new_docs_id = []
+                        docs_list = []
+                        for it in sorted_result:
+                            new_docs_id.append(it[0])
+                        for i in new_docs_id:
+                            docs_list.append(my_index.doc_list[int(i)])
+
         writefile = open("SearchLog/" + username + ".log", 'a', encoding='UTF-8')
         now = datetime.now()
-        time = now.strftime("%Y-%m-%d %H:%M:%S")
+        time = now.strftime("%Y-%m-%d|%H:%M:%S")
         writefile.write("[" + time + "] " + "search_mode:wildcard_search " + username + " " + query + "\n")
         writefile.close()
     return render_template('search.html', docs_list=docs_list, value=query, length=len(docs_list))
@@ -107,7 +237,7 @@ def cache(id_str):
             os.remove(del_path)
     # 提取快照
     dir = "WebCache"
-    html_load_path = "not_found.html" # 快照找不到时的默认路径
+    html_load_path = "not_found.html"  # 快照找不到时的默认路径
     path_list = os.listdir(dir)
     for path in path_list:
         sub_dir = os.path.join(dir, path)
@@ -122,6 +252,30 @@ def cache(id_str):
                     os.system('copy ' + cache_origin_path + ' ' + dest_path)
                     html_load_path = "tmp_" + file_name
     return render_template(html_load_path)
+
+
+@app.route("/personal/<id_str>&<search_mode>&<username>&<query>&<is_login>", methods=['POST', 'GET'])
+def like(id_str, search_mode, username, query, is_login):
+    dir_path = 'PersonalLog/' + username
+    file_path = 'PersonalLog/' + username + '/' + id_str + '.log'
+    if os.path.exists(dir_path):
+        if os.path.exists(file_path):
+            with open(file_path, 'r+', encoding='UTF-8') as file:
+                cnt_str = file.readline()
+                cnt_str = str(int(cnt_str)+1)
+                file.seek(0)
+                file.truncate()
+                file.write(cnt_str)
+        else:
+            with open(file_path, 'w', encoding='UTF-8') as file:
+                file.write('1')
+    else:
+        os.mkdir(dir_path)
+        with open(file_path, 'w', encoding='UTF-8') as file:
+            file.write('1')
+
+    return redirect(url_for(search_mode, query=query, is_login=is_login, username=username))
+
 
 @app.route("/login/<username>&<password>", methods=['POST', 'GET'])
 def login(username, password):
