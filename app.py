@@ -124,7 +124,6 @@ def logined_index(username):
     return render_template('logined_index.html', username=username)
 
 
-
 my_index = Index()
 my_query = Querier(my_index, None)
 
