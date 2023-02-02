@@ -24,18 +24,22 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/image" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Studyandwork\pycharm\PycharmProjects\Infortion\WebSearch\templates" />
-      <recent name="D:\Studyandwork\pycharm\PycharmProjects\Infortion\WebSearch\dataset" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Studyandwork\pycharm\PycharmProjects\Infortion\WebSearch\static" />
+      <recent name="D:\Studyandwork\pycharm\PycharmProjects\Infortion\WebSearch\image" />
       <recent name="D:\Studyandwork\pycharm\PycharmProjects\Infortion\WebSearch" />
       <recent name="D:\Studyandwork\pycharm\PycharmProjects\Infortion\WebSearch\templates" />
       <recent name="D:\Studyandwork\pycharm\PycharmProjects\Infortion\WebSearch\invertedIndex" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Studyandwork\pycharm\PycharmProjects\Infortion\WebSearch\static\image" />
+      <recent name="D:\Studyandwork\pycharm\PycharmProjects\Infortion\WebSearch\image" />
+      <recent name="D:\Studyandwork\pycharm\PycharmProjects\Infortion\WebSearch\templates" />
+      <recent name="D:\Studyandwork\pycharm\PycharmProjects\Infortion\WebSearch\dataset" />
     </key>
   </component>
   <component name="RunManager" selected="Python.app">
@@ -212,22 +216,22 @@
       <screen x="0" y="0" width="1440" height="912" />
     </state>
     <state width="1419" height="231" key="GridCell.Tab.-1.right/0.0.1440.912@0.0.1440.912" timestamp="1670290960022" />
-    <state width="1419" height="231" key="GridCell.Tab.0.bottom" timestamp="1675261354169">
+    <state width="1419" height="187" key="GridCell.Tab.0.bottom" timestamp="1675305581306">
       <screen x="0" y="0" width="1440" height="912" />
     </state>
-    <state width="1419" height="231" key="GridCell.Tab.0.bottom/0.0.1440.912@0.0.1440.912" timestamp="1675261354169" />
-    <state width="1419" height="231" key="GridCell.Tab.0.center" timestamp="1675261354169">
+    <state width="1419" height="187" key="GridCell.Tab.0.bottom/0.0.1440.912@0.0.1440.912" timestamp="1675305581306" />
+    <state width="1419" height="187" key="GridCell.Tab.0.center" timestamp="1675305581292">
       <screen x="0" y="0" width="1440" height="912" />
     </state>
-    <state width="1419" height="231" key="GridCell.Tab.0.center/0.0.1440.912@0.0.1440.912" timestamp="1675261354169" />
-    <state width="1419" height="231" key="GridCell.Tab.0.left" timestamp="1675261354169">
+    <state width="1419" height="187" key="GridCell.Tab.0.center/0.0.1440.912@0.0.1440.912" timestamp="1675305581292" />
+    <state width="1419" height="187" key="GridCell.Tab.0.left" timestamp="1675305581292">
       <screen x="0" y="0" width="1440" height="912" />
     </state>
-    <state width="1419" height="231" key="GridCell.Tab.0.left/0.0.1440.912@0.0.1440.912" timestamp="1675261354169" />
-    <state width="1419" height="231" key="GridCell.Tab.0.right" timestamp="1675261354169">
+    <state width="1419" height="187" key="GridCell.Tab.0.left/0.0.1440.912@0.0.1440.912" timestamp="1675305581292" />
+    <state width="1419" height="187" key="GridCell.Tab.0.right" timestamp="1675305581292">
       <screen x="0" y="0" width="1440" height="912" />
     </state>
-    <state width="1419" height="231" key="GridCell.Tab.0.right/0.0.1440.912@0.0.1440.912" timestamp="1675261354169" />
+    <state width="1419" height="187" key="GridCell.Tab.0.right/0.0.1440.912@0.0.1440.912" timestamp="1675305581292" />
     <state x="1" y="430" width="1419" height="231" key="GridCell.Tab.1.bottom" timestamp="1675261354170">
       <screen x="0" y="0" width="1440" height="912" />
     </state>
